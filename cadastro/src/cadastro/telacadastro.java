@@ -17,14 +17,43 @@ public class telacadastro extends javax.swing.JFrame {
      */
     public telacadastro() {
         initComponents();
-        
+
         jSlider1.setMinimum(0);
         jSlider1.setMaximum(100);
         jSlider1.setValue(1);
         jSlider1.setMajorTickSpacing(25);
         jSlider1.setPaintTicks(false);
         jSlider1.setPaintLabels(false);
-        
+
+        jComboBox1.removeAllItems();
+
+        jComboBox1.addItem("Acre");
+        jComboBox1.addItem("Alagoas");
+        jComboBox1.addItem("Amapá");
+        jComboBox1.addItem("Amazonas");
+        jComboBox1.addItem("Bahia");
+        jComboBox1.addItem("Ceará");
+        jComboBox1.addItem("Distrito Federal");
+        jComboBox1.addItem("Espírito Santo");
+        jComboBox1.addItem("Goiás");
+        jComboBox1.addItem("Maranhão");
+        jComboBox1.addItem("Mato Grosso");
+        jComboBox1.addItem("Mato Grosso do Sul");
+        jComboBox1.addItem("Minas Gerais");
+        jComboBox1.addItem("Pará");
+        jComboBox1.addItem("Paraíba");
+        jComboBox1.addItem("Paraná");
+        jComboBox1.addItem("Pernambuco");
+        jComboBox1.addItem("Piauí");
+        jComboBox1.addItem("Rio de Janeiro");
+        jComboBox1.addItem("Rio Grande do Norte");
+        jComboBox1.addItem("Rio Grande do Sul");
+        jComboBox1.addItem("Rondônia");
+        jComboBox1.addItem("Roraima");
+        jComboBox1.addItem("Santa Catarina");
+        jComboBox1.addItem("São Paulo");
+        jComboBox1.addItem("Sergipe");
+        jComboBox1.addItem("Tocantins");
     }
 
     /**
@@ -49,12 +78,12 @@ public class telacadastro extends javax.swing.JFrame {
         jTCPF = new javax.swing.JTextField();
         jTCidade = new javax.swing.JTextField();
         jTBairro = new javax.swing.JTextField();
-        jTestado = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jRBOutro = new javax.swing.JRadioButton();
         jBFechar = new javax.swing.JButton();
         jSlider1 = new javax.swing.JSlider();
         jLabel8 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -97,6 +126,13 @@ public class telacadastro extends javax.swing.JFrame {
 
         jLabel8.setText("jLabel8");
 
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -128,8 +164,10 @@ public class telacadastro extends javax.swing.JFrame {
                             .addComponent(jLabel6))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTBairro)
-                            .addComponent(jTestado))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jTBairro))))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 248, Short.MAX_VALUE)
@@ -173,9 +211,9 @@ public class telacadastro extends javax.swing.JFrame {
                             .addComponent(jLabel5)
                             .addComponent(jTBairro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6)
-                            .addComponent(jTestado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(27, 102, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -196,7 +234,7 @@ public class telacadastro extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jSlider1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSlider1StateChanged
-       jLabel8.setText(String.valueOf(jSlider1.getValue()));
+        jLabel8.setText(String.valueOf(jSlider1.getValue()));
     }//GEN-LAST:event_jSlider1StateChanged
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -205,26 +243,30 @@ public class telacadastro extends javax.swing.JFrame {
         String cpf = jTCPF.getText();
         String cidade = jTCidade.getText();
         String bairro = jTBairro.getText();
-        String estado = jTestado.getText();
+        String estado = jComboBox1.getSelectedItem() . toString();
         String genero = null;
-        if(jRBMasculino.isSelected()){
-         genero = "Masculino";
-        }else if (jRBFeminino.isSelected()){
-         genero = "Feminino";
-        }else if (jRBOutro.isSelected()){
-         genero = "Outro";
+        if (jRBMasculino.isSelected()) {
+            genero = "Masculino";
+        } else if (jRBFeminino.isSelected()) {
+            genero = "Feminino";
+        } else if (jRBOutro.isSelected()) {
+            genero = "Outro";
         }
-        
+
         JOptionPane.showMessageDialog(null, "nome: " + nome
-        + "\nIdade: " + idade
-        + "\nCPF: " + cpf
-        + "\ncidade: " + cidade
-        + "\nbairro: " + bairro
-        + "\nestado: " + estado
-        + "\ngenero: " + genero);
-        
-        
+                + "\nIdade: " + idade
+                + "\nCPF: " + cpf
+                + "\ncidade: " + cidade
+                + "\nbairro: " + bairro
+                + "\nestado: " + estado
+                + "\ngenero: " + genero);
+
+
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -265,6 +307,7 @@ public class telacadastro extends javax.swing.JFrame {
     private javax.swing.JLabel cpf;
     private javax.swing.JButton jBFechar;
     private javax.swing.JButton jButton1;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
@@ -280,6 +323,5 @@ public class telacadastro extends javax.swing.JFrame {
     private javax.swing.JTextField jTCPF;
     private javax.swing.JTextField jTCidade;
     private javax.swing.JTextField jTNome;
-    private javax.swing.JTextField jTestado;
     // End of variables declaration//GEN-END:variables
 }
